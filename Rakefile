@@ -1,7 +1,5 @@
 require 'bundler'
 
-Bundler::GemHelper.install_tasks
-
 begin
   require 'spree/testing_support/extension_rake'
   require 'rubocop/rake_task'
@@ -25,6 +23,11 @@ end
 
 desc 'Generates a dummy app for testing'
 task :test_app do
-  ENV['LIB_NAME'] = 'order_reporting'
+  case ENV['BUNDLE_GEMFILE']
+  when 'Gemfile.spree.rb'
+    ENV['LIB_NAME'] = 'spree_order_reporting'
+  when 'Gemfile.solidus.rb'
+    ENV['LIB_NAME'] = 'solidus_order_reporting'
+  end
   Rake::Task['extension:test_app'].invoke
 end
