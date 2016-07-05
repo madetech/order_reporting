@@ -1,7 +1,7 @@
 module OrderReporting
   class Report
     def initialize(name)
-      @report_criteria_block = OrderReporting[name]
+      @query = OrderReporting[name][:query]
     end
 
     def send_report
@@ -11,7 +11,7 @@ module OrderReporting
     private
 
     def orders
-      @report_criteria_block.call
+      @query.orders
     end
   end
 end

@@ -5,9 +5,9 @@ feature 'Specifying criteria for a report' do
   end
 
   def when_the_customer_service_desk_wishes_to_receive_latest_order_report
-    OrderReporting.define_report :latest_orders do
-      Spree::Order.complete.where('updated_at > ?', 24.hours.ago)
-    end
+    OrderReporting.scheduler = double(schedule: nil)
+    OrderReporting.define_report :latest_orders, send_every: 24.hours,
+                                                 query: OrderReporting::LatestOrdersQuery.new
   end
 
   def then_all_completed_orders_in_last_24_hours_should_be_reported

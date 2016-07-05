@@ -1,12 +1,22 @@
 require 'order_reporting/engine'
 require 'order_reporting/report'
+require 'order_reporting/schedulers/delayed_job_scheduler'
+require 'order_reporting/queries/latest_orders_query'
 
 module OrderReporting
   extend self
 
-  def define_report(name, &block)
+  attr_accessor :scheduler
+
+  def define_report(name, options = {})
     @reports ||= {}
-    @reports[name] = block
+    @reports[name] = options.merge(name: name)
+    setup_recurring_report(name)
+  end
+
+  def setup_recurring_report(name)
+    return unless @reports[name].respond_to?(:send_every)
+    scheduler.schedule(Report.new(name), self[name])
   end
 
   def [](name)
