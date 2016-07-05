@@ -9,9 +9,10 @@ module OrderReporting
   attr_accessor :scheduler
   attr_accessor :mailer_class
 
-  def define_report(name, options = {})
+  def define_report(name)
     @reports ||= {}
-    @reports[name] = options.merge(name: name)
+    @reports[name] = OpenStruct.new(name: name)
+    yield @reports[name]
     setup_recurring_report(name)
   end
 
