@@ -7,6 +7,7 @@ module OrderReporting
   extend self
 
   attr_accessor :scheduler
+  attr_accessor :mailer_class
 
   def define_report(name, options = {})
     @reports ||= {}

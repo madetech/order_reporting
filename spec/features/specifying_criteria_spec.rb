@@ -5,6 +5,7 @@ feature 'Specifying criteria for a report' do
   end
 
   def when_the_customer_service_desk_wishes_to_receive_latest_order_report
+    OrderReporting.mailer_class = double(latest_orders: nil)
     OrderReporting.scheduler = double(schedule: nil)
     OrderReporting.define_report :latest_orders, send_every: 24.hours,
                                                  query: OrderReporting::LatestOrdersQuery.new
