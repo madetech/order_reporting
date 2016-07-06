@@ -5,18 +5,17 @@ require 'order_reporting/version'
 Gem::Specification.new do |s|
   s.name        = 'solidus_order_reporting'
   s.version     = OrderReporting::VERSION
-  s.summary     = 'TODO'
-  s.description = 'TODO'
-  s.license     = 'BSD-3-Clause'
+  s.summary     = 'Order reports by email for Solidus v1.2'
+  s.license     = 'MIT'
 
-  # s.author    = 'You'
-  # s.email     = 'you@example.com'
-  # s.homepage  = 'http://www.example.com'
+  s.author    = 'Luke Morton'
+  s.email     = 'luke@madetech.com'
+  s.homepage  = 'https://github.com/madetech/order_reporting'
 
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile', 'README.md']
-  s.test_files = Dir['test/**/*']
+  s.test_files = Dir['spec/**/*']
 
-  s.add_dependency 'solidus_core', '~> 1.0'
+  s.add_dependency 'solidus_core', '~> 1.0.0'
 
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'poltergeist'
