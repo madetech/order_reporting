@@ -1,5 +1,7 @@
 # Order Reporting for Spree and Solidus
 
+[![Build Status](https://travis-ci.org/madetech/order_reporting.svg?branch=master)](https://travis-ci.org/madetech/order_reporting)
+
 Automatically sends lists of orders via email based on criteria.
 
 ## Installing in Spree app
@@ -66,6 +68,7 @@ end
 Run spree tests:
 
 ```
+rm -rf spec/dummy/
 BUNDLE_GEMFILE=Gemfile.spree.rb bundle
 BUNDLE_GEMFILE=Gemfile.spree.rb bundle exec rake
 ```
@@ -73,6 +76,7 @@ BUNDLE_GEMFILE=Gemfile.spree.rb bundle exec rake
 Run solidus tests:
 
 ```
+rm -rf spec/dummy/
 BUNDLE_GEMFILE=Gemfile.solidus.rb bundle
 BUNDLE_GEMFILE=Gemfile.solidus.rb bundle exec rake
 ```
