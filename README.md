@@ -89,12 +89,12 @@ Publish Spree gem:
 
 ```
 gem build spree_order_reporting.gemspec
-gem publish spree_order_reporting-x.x.x.gem
+gem push spree_order_reporting-x.x.x.gem
 ```
 
 Publish Solidus gem:
 
 ```
 gem build solidus_order_reporting.gemspec
-gem publish solidus_order_reporting-x.x.x.gem
+gem push solidus_order_reporting-x.x.x.gem
 ```
