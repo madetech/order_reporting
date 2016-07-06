@@ -68,6 +68,7 @@ end
 Run spree tests:
 
 ```
+rm -rf spec/dummy/
 BUNDLE_GEMFILE=Gemfile.spree.rb bundle
 BUNDLE_GEMFILE=Gemfile.spree.rb bundle exec rake
 ```
@@ -75,6 +76,7 @@ BUNDLE_GEMFILE=Gemfile.spree.rb bundle exec rake
 Run solidus tests:
 
 ```
+rm -rf spec/dummy/
 BUNDLE_GEMFILE=Gemfile.solidus.rb bundle
 BUNDLE_GEMFILE=Gemfile.solidus.rb bundle exec rake
 ```
