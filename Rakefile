@@ -24,10 +24,15 @@ end
 desc 'Generates a dummy app for testing'
 task :test_app do
   case ENV['BUNDLE_GEMFILE']
-  when 'Gemfile.spree.rb'
+  when /spree/
     ENV['LIB_NAME'] = 'spree_order_reporting'
-  when 'Gemfile.solidus.rb'
+  when /solidus/
     ENV['LIB_NAME'] = 'solidus_order_reporting'
+  else
+    raise 'Specify BUNDLE_GEMFILE'
   end
+
   Rake::Task['extension:test_app'].invoke
+  system 'bundle exec rails g delayed_job:active_record'
+  system 'bundle exec rake db:migrate'
 end

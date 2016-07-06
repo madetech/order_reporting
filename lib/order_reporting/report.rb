@@ -1,17 +1,25 @@
 module OrderReporting
   class Report
     def initialize(name)
-      @report_criteria_block = OrderReporting[name]
+      @name = name
     end
 
     def send_report
-      orders
+      orders.tap { |orders| mailer.send(@name, orders) }
     end
 
     private
 
+    def mailer
+      report[:mailer_class] || OrderReporting.mailer_class
+    end
+
     def orders
-      @report_criteria_block.call
+      report[:query].orders
+    end
+
+    def report
+      OrderReporting[@name]
     end
   end
 end
