@@ -5,16 +5,15 @@ require 'order_reporting/version'
 Gem::Specification.new do |s|
   s.name        = 'spree_order_reporting'
   s.version     = OrderReporting::VERSION
-  s.summary     = 'TODO'
-  s.description = 'TODO'
-  s.license     = 'BSD-3-Clause'
+  s.summary     = 'Order reports by email for Spree v2.4'
+  s.license     = 'MIT'
 
-  # s.author    = 'You'
-  # s.email     = 'you@example.com'
-  # s.homepage  = 'http://www.example.com'
+  s.author    = 'Luke Morton'
+  s.email     = 'luke@madetech.com'
+  s.homepage  = 'https://github.com/madetech/order_reporting'
 
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile', 'README.md']
-  s.test_files = Dir['test/**/*']
+  s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'spree_core', '~> 2.4.0'
 

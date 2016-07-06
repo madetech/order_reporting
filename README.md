@@ -76,3 +76,21 @@ Run solidus tests:
 BUNDLE_GEMFILE=Gemfile.solidus.rb bundle
 BUNDLE_GEMFILE=Gemfile.solidus.rb bundle exec rake
 ```
+
+## Publishing
+
+Before publishing you will need to have created a new release. To do so update `lib/order_reporting/version.rb` to new version number and commit this change as "New release vx.x.x". Then tag this commit with ```git tag vx.x.x``` and push it `git push origin vx.x.x`. Then you need to publish to RubyGems...
+
+Publish Spree gem:
+
+```
+gem build spree_order_reporting.gemspec
+gem publish spree_order_reporting-x.x.x.gem
+```
+
+Publish Solidus gem:
+
+```
+gem build solidus_order_reporting.gemspec
+gem publish solidus_order_reporting-x.x.x.gem
+```
