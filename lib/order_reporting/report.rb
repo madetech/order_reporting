@@ -5,10 +5,20 @@ module OrderReporting
     end
 
     def send_report
-      orders.tap { |orders| mailer.send(@name, orders) }
+      orders.tap do |orders|
+        deliver(mailer.send(@name, orders))
+      end
     end
 
     private
+
+    def deliver(mail)
+      if mail.respond_to?(:deliver)
+        mail.deliver
+      elsif mail.respond_to?(:deliver_now)
+        mail.deliver_now
+      end
+    end
 
     def mailer
       report[:mailer_class] || OrderReporting.mailer_class
