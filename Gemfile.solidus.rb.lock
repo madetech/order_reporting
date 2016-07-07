@@ -60,7 +60,7 @@ PATH
   remote: .
   specs:
     solidus_order_reporting (0.0.1)
-      solidus_core (~> 1.0)
+      solidus_core (~> 1.2.0)
 
 GEM
   remote: https://rubygems.org/
