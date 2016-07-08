@@ -18,6 +18,6 @@ feature 'Recurring reports' do
     first_job = Delayed::Job.first
     first_job.update!(run_at: Time.now)
     Delayed::Worker.new.work_off
-    expect(first_job).to_not eq(Delayed::Job.first)
+    expect(first_job.id).to_not eq(Delayed::Job.first.id)
   end
 end
