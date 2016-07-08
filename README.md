@@ -24,25 +24,11 @@ gem 'solidus_order_reporting'
 
 Three steps to configure:
 
-1. Setup gem with initializer
-2. Create mailer and template
-3. Create query object for selecting orders
+1. Create mailer and template
+2. Create query object for selecting orders
+3. Setup gem with initializer
 
-### 1. Setup gem with initializer
-
-Create an application initializer in `config/initializers/order_reporting.rb`:
-
-``` ruby
-OrderReporting.mailer_class = OrderReportMailer
-OrderReporting.scheduler = OrderReporting::DelayedJobScheduler.new
-
-OrderReporting.define_report :exported_orders do |config|
-  config.send_every = 24.hours
-  config.query = ExportedOrdersQuery.new
-end
-```
-
-### 2. Create mailer and template
+### 1. Create mailer and template
 
 ```ruby
 class OrderReportMailer < ActionMailer::Base
@@ -53,13 +39,27 @@ class OrderReportMailer < ActionMailer::Base
 end
 ```
 
-### 3. Create query object for selecting orders
+### 2. Create query object for selecting orders
 
 ```ruby
 class ExportedOrdersQuery
   def orders
     Spree::Order.exported.where('completed_at > ?', 24.hours.ago)
   end
+end
+```
+
+### 3. Setup gem with initializer
+
+Create an application initializer in `config/initializers/order_reporting.rb`:
+
+``` ruby
+OrderReporting.mailer_class = OrderReportMailer
+OrderReporting.scheduler = OrderReporting::DelayedJobScheduler.new
+
+OrderReporting.define_report :exported_orders do |config|
+  config.send_every = 24.hours
+  config.query = ExportedOrdersQuery.new
 end
 ```
 
