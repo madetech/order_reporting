@@ -4,7 +4,10 @@ module OrderReporting
   class RecurringReportDelayedJob < RecurringReportJob
     def perform
       report.send_report
-    ensure
+    end
+
+    def success
+      options[:even_if_job_exists] = true
       scheduler.schedule(report, options)
     end
   end
