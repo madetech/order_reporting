@@ -68,7 +68,7 @@ GIT
 PATH
   remote: .
   specs:
-    spree_order_reporting (0.0.2)
+    spree_order_reporting (0.0.3)
       spree_core (~> 2.4.0)
 
 GEM
